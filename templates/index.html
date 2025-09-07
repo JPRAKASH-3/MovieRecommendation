@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Advanced Movie Recommender</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+<h1>🎬 Advanced Movie Recommendation System</h1>
+
+<form method="POST" action="/recommend" autocomplete="off">
+    <input type="text" name="movie" placeholder="Enter a movie title" required>
+    <input type="number" name="user_id" placeholder="Optional User ID">
+    <button type="submit">Get Recommendations</button>
+</form>
+
+{% if movie %}
+<h2>Recommendations for "{{ movie }}":</h2>
+<div class="recommendations">
+{% for rec in recommendations %}
+<div class="card">
+    <img src="{{ rec.poster_url }}" alt="{{ rec.title }}" onerror="this.onerror=null;this.src='https://via.placeholder.com/150';">
+    <h3>{{ rec.title }}</h3>
+</div>
+{% endfor %}
+</div>
+{% endif %}
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
